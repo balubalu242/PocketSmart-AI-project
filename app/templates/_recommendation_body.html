@@ -1,0 +1,31 @@
+<div class="result-grid">
+  <section class="card">
+    <div class="section-heading"><h2>Budget allocation</h2></div>
+    {% for a in item.result.allocations %}
+    <div class="allocation">
+      <div><strong>{{ a.category }}</strong><span>{{ a.explanation }}</span></div>
+      <b>₹{{ "%.0f"|format(a.amount) }}</b>
+    </div>
+    {% endfor %}
+    <div class="total-row"><span>Total</span><strong>₹{{ "%.0f"|format(item.result.budget) }}</strong></div>
+  </section>
+
+  <section class="card">
+    <div class="section-heading"><h2>Recommendations</h2></div>
+    <div class="recommendation-list">
+      {% for r in item.result.recommendations %}
+      <article class="recommendation">
+        <div class="rec-top"><span class="pill">{{ r.category }}</span><span>{{ r.platform }}</span></div>
+        <h3>{{ r.name }}</h3>
+        <p>{{ r.why }}</p>
+        <div class="rec-bottom"><strong>₹{{ "%.0f"|format(r.estimated_price) }}</strong>{% if r.url %}<a href="{{ r.url }}" target="_blank" rel="noopener noreferrer">Open platform →</a>{% endif %}</div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+{% if item.result.tips %}
+<section class="card tips"><h2>Practical tips</h2><ul>{% for tip in item.result.tips %}<li>{{ tip }}</li>{% endfor %}</ul></section>
+{% endif %}
+<p class="muted disclaimer">{{ item.result.disclaimer }} Source: {{ item.result.source }}.</p>

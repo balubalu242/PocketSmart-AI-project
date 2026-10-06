@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Jewelry Planner — PocketSmart AI{% endblock %}
+{% block content %}
+<section class="page-head"><p class="eyebrow">JEWELRY PLANNER</p><h1>Find an occasion-ready combination</h1><p>Give your budget and style. Optionally add an outfit image for visual context.</p></section>
+<form id="jewelry-form" class="planner-form card" enctype="multipart/form-data">
+  <div class="form-grid">
+    <label>Budget (₹)<input type="number" name="budget" min="1" step="100" required></label>
+    <label>Occasion<input name="occasion" value="wedding" required></label>
+    <label>Style<select name="style"><option>elegant</option><option>traditional</option><option>minimal</option><option>statement</option><option>modern</option></select></label>
+    <label>Metal preference<input name="metal_preference" value="any"></label>
+  </div>
+  <label>Outfit image (optional)<input type="file" name="image" accept="image/jpeg,image/png,image/webp"></label>
+  <label>Notes<textarea name="notes" rows="3" placeholder="Color, neckline, preferred scale..."></textarea></label>
+  <button class="btn" type="submit">Generate jewelry recommendations</button>
+  <div class="loading" hidden>Analyzing your plan...</div>
+</form>
+<div id="result"></div>
+{% endblock %}
+{% block scripts %}
+<script>window.POCKETSMART_PAGE = "jewelry";</script>
+{% endblock %}

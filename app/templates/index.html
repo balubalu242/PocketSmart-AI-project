@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}PocketSmart AI — Smart Budget Assistant{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">SMART BUDGET PLANNING</p>
+    <h1>Plan better. Spend smarter.</h1>
+    <p class="hero-copy">PocketSmart AI turns your budget, preferences and context into structured plans for interiors, parties and jewelry.</p>
+    {% if user %}
+      <a class="btn" href="/dashboard">Open dashboard</a>
+    {% else %}
+      <a class="btn" href="/register">Start planning</a>
+    {% endif %}
+  </div>
+  <div class="hero-card">
+    <div class="hero-icon">₹</div>
+    <h3>One budget. Smarter decisions.</h3>
+    <p>AI-assisted allocations, recommendations and practical tips in one place.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <p class="eyebrow">THREE PLANNERS</p>
+    <h2>Choose what you want to plan</h2>
+  </div>
+  <div class="cards three">
+    <article class="card feature-card">
+      <span class="icon">⌂</span>
+      <h3>Home Interior</h3>
+      <p>Plan rooms, furniture, lighting and decor around your budget and style.</p>
+      {% if user %}<a href="/planner/home">Plan a home →</a>{% endif %}
+    </article>
+    <article class="card feature-card">
+      <span class="icon">★</span>
+      <h3>Party Planner</h3>
+      <p>Balance catering, venue, decoration and contingency for your guest count.</p>
+      {% if user %}<a href="/planner/party">Plan a party →</a>{% endif %}
+    </article>
+    <article class="card feature-card">
+      <span class="icon">◇</span>
+      <h3>Jewelry Planner</h3>
+      <p>Get occasion and style-aware jewelry suggestions with optional outfit context.</p>
+      {% if user %}<a href="/planner/jewelry">Plan jewelry →</a>{% endif %}
+    </article>
+  </div>
+</section>
+
+<section class="section muted-panel">
+  <h2>How it works</h2>
+  <div class="steps">
+    <div><b>1</b><span>Set your budget and preferences.</span></div>
+    <div><b>2</b><span>PocketSmart builds a category-level plan.</span></div>
+    <div><b>3</b><span>Review recommendations and save the result.</span></div>
+  </div>
+</section>
+{% endblock %}

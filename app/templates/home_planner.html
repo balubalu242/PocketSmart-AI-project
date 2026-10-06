@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Home Planner — PocketSmart AI{% endblock %}
+{% block content %}
+<section class="page-head"><p class="eyebrow">HOME INTERIOR</p><h1>Build your home plan</h1><p>Tell us your budget, rooms and preferred style.</p></section>
+<form id="home-form" class="planner-form card">
+  <div class="form-grid">
+    <label>Budget (₹)<input type="number" name="budget" min="1" step="100" required></label>
+    <label>City<input name="city" value="Chennai" required></label>
+    <label>Style<select name="style"><option>modern</option><option>minimal</option><option>traditional</option><option>bohemian</option><option>contemporary</option></select></label>
+  </div>
+  <div id="rooms"></div>
+  <button class="btn btn-secondary" type="button" id="add-room">+ Add room</button>
+  <label>Notes<textarea name="notes" rows="3" placeholder="Colors, must-have items, constraints..."></textarea></label>
+  <button class="btn" type="submit">Generate home recommendations</button>
+  <div class="loading" hidden>Generating your plan...</div>
+</form>
+<div id="result"></div>
+{% endblock %}
+{% block scripts %}
+<script>window.POCKETSMART_PAGE = "home";</script>
+{% endblock %}

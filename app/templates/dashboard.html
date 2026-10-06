@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — PocketSmart AI{% endblock %}
+{% block content %}
+<section class="page-head">
+  <p class="eyebrow">DASHBOARD</p>
+  <h1>Hi, {{ user.full_name }}.</h1>
+  <p>Choose a planner and turn your budget into a practical plan.</p>
+</section>
+
+<div class="cards three">
+  <a class="card feature-card link-card" href="/planner/home"><span class="icon">⌂</span><h3>Home</h3><p>Furniture, lighting and decor.</p></a>
+  <a class="card feature-card link-card" href="/planner/party"><span class="icon">★</span><h3>Party</h3><p>Catering, venue and decoration.</p></a>
+  <a class="card feature-card link-card" href="/planner/jewelry"><span class="icon">◇</span><h3>Jewelry</h3><p>Occasion and style matching.</p></a>
+</div>
+
+<section class="section">
+  <div class="section-heading row">
+    <div><p class="eyebrow">RECENT</p><h2>Your latest plans</h2></div>
+    <a href="/history-view">View all</a>
+  </div>
+  {% if recent %}
+    <div class="history-list">
+      {% for item in recent %}
+        <a class="history-item" href="/recommendations/{{ item.id }}">
+          <div><strong>{{ item.result.title }}</strong><span>{{ item.planner_type|title }} · {{ item.created_at[:16]|replace('T', ' ') }}</span></div>
+          <b>₹{{ "%.0f"|format(item.result.budget) }}</b>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty card">No recommendations yet. Start with a planner above.</div>
+  {% endif %}
+</section>
+{% endblock %}

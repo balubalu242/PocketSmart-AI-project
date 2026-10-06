@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Recommendations — PocketSmart AI{% endblock %}
+{% block content %}
+<section class="page-head">
+  <p class="eyebrow">{{ item.planner_type|upper }} RECOMMENDATION</p>
+  <h1>{{ item.result.title }}</h1>
+  <p>{{ item.result.summary }}</p>
+</section>
+{% include "_recommendation_body.html" %}
+{% endblock %}

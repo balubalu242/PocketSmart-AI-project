@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}History — PocketSmart AI{% endblock %}
+{% block content %}
+<section class="page-head">
+  <p class="eyebrow">HISTORY</p>
+  <h1>Your recommendation history</h1>
+  <p>Review previous budget plans and their recommendations.</p>
+</section>
+{% if history %}
+<div class="history-list">
+  {% for item in history %}
+  <a class="history-item" href="/recommendations/{{ item.id }}">
+    <div><strong>{{ item.result.title }}</strong><span>{{ item.planner_type|title }} · {{ item.created_at[:16]|replace('T', ' ') }}</span></div>
+    <b>₹{{ "%.0f"|format(item.result.budget) }}</b>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty card">Nothing saved yet.</div>
+{% endif %}
+{% endblock %}
